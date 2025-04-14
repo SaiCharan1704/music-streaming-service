@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shershaah - Playlist</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="Album.css">
+</head>
+<body>
+  <div class="header">
+    <div class="song-cover">
+      <img src="Shershaah.jpeg" alt="Shershaah" id="playlistCover">
+    </div>
+    <div class="playlist-info">
+      <p class="playlist-details">Shershaah</p>
+      <h1>Shershaah</h1>
+    </div>
+  </div>
+  <div>
+    <div class="content-scrollable">
+      <p class="playlist-details">Playlist</p>
+      <h1>Shershaah</h1>
+
+  <table class="song-table" id="songTable">
+    <tr>
+      <th>#</th>
+      <th>TITLE</th>
+      <th>SINGER</th>
+      <th>⏱</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Raataan Lambiyan<br><small>Sidharth Malhotra,Kiara Advani</small></td>
+      <td>Tanishk Bagchi,Jubin Nautiyal,Asees Kaur</td>
+      <td>3:50</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Ranjha<br><small>Vijay Thalapathi,Malavika Mohan</small></td>
+      <td>Jasleen Royal,B Praak,Romy</td>
+      <td>3:48</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Mann Bharryaa<br><small>Vijay Thalapathi,Malavika Mohan</small></td>
+      <td>B Praak,Jaani</td>
+      <td>4:26</td>
+    </tr>
+  </table>
+</div>
+
+  <footer>
+    <div class="footer-section">
+        <section class="song-details">
+            <img alt="play-song" id="masterCover">
+            <div class="playing-song-info">
+              <div class="song-info">
+                <h1 id="masterSongTitle"></h1>
+                <p id="masterSongInfo"></p>
+              </div>
+              <i class="fa-regular fa-heart" id="fav-song"></i>
+            </div>
+          </section>
+
+      <section class="song-status">
+        <div class="song-control">
+          <i class="fa-solid fa-shuffle" id="shuffleMusic"></i>
+          <i class="fa-solid fa-backward-step" id="previous"></i>
+          <i class="fa-solid fa-circle-play fa-2x" id="masterPlayBtn"></i>
+          <i class="fa-sharp fa-solid fa-forward-step" id="next"></i>
+          <i class="fa-solid fa-repeat" id="repeatMode"></i>
+        </div>
+
+        <div class="progressbar-container">
+          <span id="musicStart">0:00</span>
+          <div class="custom-progress">
+            <div class="progress-bar" id="customProgressBar">
+              <div class="progress" id="customProgress"></div>
+              <div class="progress-thumb" id="customProgressThumb"></div>
+            </div>
+          </div>
+          <span id="musicEnd">3:45</span>
+        </div>
+      </section>
+
+      <section class="song-directory">
+        <i class="fa-solid fa-music"></i>
+        <p class="lyrics">Lyrics</p>
+        <i class="fa-solid fa-bars song-queue"></i>
+        <p class="queue">Queue</p>
+        <i class="fa-solid fa-computer"></i>
+        <p class="connectivity">Connect</p>
+        <i class="fa-solid fa-volume-high" id="volIcon"></i>
+        <input type="range" value="100" min="1" max="100" step="1" class="volume-seekbar">
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    const songList = [
+    {
+        title: "Raataan Lambiyan",
+        artist: "John Stewart Eduri",
+        singer: "Tanishk Bagchi, Jubin Nautiyal, Asees Kaur",
+        src: "Raataan Lambiyan.mp3",
+        cover: "Shershaah.jpeg",
+        duration: "3:50"
+        },
+        {
+        title: "Ranjha",
+        artist: "John Stewart Eduri",
+        singer: "Jasleen Royal, B Praak, Romy",
+        src: "Ranjha.mp3",
+        cover: "Shershaah.jpeg",
+        duration: "3:48"
+        },
+        {
+        title: "Mann Bharryaa",
+        artist: "John Stewart Eduri",
+        singer: "B Praak, Jaani",
+        src: "Mann Bharryaa.mp3",
+        cover: "Shershaah.jpeg",
+        duration: "4:26"
+        }
+        
+
+    ];
+  
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    let isRepeat = false;
+    let isShuffle = false;
+    const audio = new Audio();
+  
+    const playBtn = document.getElementById('masterPlayBtn');
+    const prevBtn = document.getElementById('previous');
+    const nextBtn = document.getElementById('next');
+    const repeatBtn = document.getElementById('repeatMode');
+    const shuffleBtn = document.getElementById('shuffleMusic');
+  
+    const masterTitle = document.getElementById('masterSongTitle');
+    const masterInfo = document.getElementById('masterSongInfo');
+    const masterCover = document.getElementById('masterCover');
+    const progress = document.getElementById('customProgress');
+    const thumb = document.getElementById('customProgressThumb');
+    const startTime = document.getElementById('musicStart');
+    const endTime = document.getElementById('musicEnd');
+  
+    function loadSong(index) {
+      const song = songList[index];
+      currentSongIndex = index;
+      audio.src = song.src;
+      masterTitle.textContent = song.title;
+      masterInfo.textContent = `${song.singer}, ${song.artist}`;
+      masterCover.src = song.cover;
+      endTime.textContent = song.duration;
+      resetProgress();
+    }
+  
+    function resetProgress() {
+      progress.style.width = '0%';
+      thumb.style.left = '0%';
+      startTime.textContent = '0:00';
+    }
+  
+    function playSong() {
+      audio.play();
+      isPlaying = true;
+      playBtn.classList.remove('fa-circle-play');
+      playBtn.classList.add('fa-circle-pause');
+    }
+  
+    function pauseSong() {
+      audio.pause();
+      isPlaying = false;
+      playBtn.classList.add('fa-circle-play');
+      playBtn.classList.remove('fa-circle-pause');
+    }
+  
+    function playNext() {
+      if (isShuffle) {
+        currentSongIndex = Math.floor(Math.random() * songList.length);
+      } else {
+        currentSongIndex = (currentSongIndex + 1) % songList.length;
+      }
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    function playPrevious() {
+      currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    playBtn.addEventListener('click', () => {
+      isPlaying ? pauseSong() : playSong();
+    });
+  
+    prevBtn.addEventListener('click', playPrevious);
+    nextBtn.addEventListener('click', playNext);
+  
+    repeatBtn.addEventListener('click', () => {
+      isRepeat = !isRepeat;
+      repeatBtn.style.color = isRepeat ? "#1db954" : "#ccc";
+    });
+  
+    shuffleBtn.addEventListener('click', () => {
+      isShuffle = !isShuffle;
+      shuffleBtn.style.color = isShuffle ? "#1db954" : "#ccc";
+    });
+  
+    audio.addEventListener('ended', () => {
+      if (isRepeat) {
+        loadSong(currentSongIndex);
+        playSong();
+      } else {
+        playNext();
+      }
+    });
+  
+    document.getElementById("fav-song").addEventListener("click", function () {
+      this.classList.toggle("fa-solid");
+      this.style.color = this.classList.contains("fa-solid") ? "#1db954" : "#aaa";
+    });
+  
+    // Click on row to play that song
+    const songTable = document.getElementById('songTable');
+    const rows = songTable.getElementsByTagName('tr');
+    for (let i = 1; i < rows.length; i++) {
+      rows[i].addEventListener('click', () => {
+        loadSong(i - 1);
+        playSong();
+      });
+    }
+  
+    audio.addEventListener('timeupdate', () => {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = `${percentage}%`;
+      thumb.style.left = `${percentage}%`;
+      let mins = Math.floor(audio.currentTime / 60);
+      let secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+      startTime.textContent = `${mins}:${secs}`;
+    });
+    const progressBarContainer = document.getElementById('customProgressBar');
+
+progressBarContainer.addEventListener('click', (e) => {
+  const rect = progressBarContainer.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+  const clickPercent = clickX / width;
+
+  if (!isNaN(audio.duration)) {
+    audio.currentTime = audio.duration * clickPercent;
+  }
+});
+function loadSong(index) {
+  const song = songList[index];
+  currentSongIndex = index;
+  audio.src = song.src;
+  masterTitle.textContent = song.title;
+  masterInfo.textContent = `${song.singer}, ${song.artist}`;
+  masterCover.src = song.cover;
+  endTime.textContent = song.duration;
+  resetProgress();
+
+  // Highlight the currently playing row
+  for (let j = 1; j < rows.length; j++) {
+    rows[j].classList.remove('active');
+  }
+  rows[index + 1].classList.add('active'); // +1 because rows[0] is the header
+}
+
+  
+    // Load initial song
+    loadSong(currentSongIndex);
+
+  </script>
+  
+  
+</body>
+</html>

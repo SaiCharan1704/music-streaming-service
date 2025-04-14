@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DSP - Playlist</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="Album.css">
+</head>
+<body>
+  <div class="header">
+    <div class="song-cover">
+      <img src="DSP.jpeg" alt="Thaman" id="playlistCover">
+    </div>
+    <div class="playlist-info">
+      <p class="playlist-details">DSP All time Hit songs</p>
+      <h1>DSP</h1>
+    </div>
+  </div>
+  <div>
+    <div class="content-scrollable">
+      <p class="playlist-details">Playlist</p>
+      <h1>DSP Musical Hits</h1>
+
+  <table class="song-table" id="songTable">
+    <tr>
+      <th>#</th>
+      <th>TITLE</th>
+      <th>SINGER</th>
+      <th>⏱</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Neeti Mullai<br><small>Prabhas,Trisha</small></td>
+      <td>Sumangali,Ocen</td>
+      <td>1:22</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Nee Kannu Neeli Samudram<br><small>Vaishnav Tej,Krithi shetty</small></td>
+      <td>Javed Ali</td>
+      <td>5:09</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Naa Manasu Neelo<br><small>NTR,Rakul Preet Singh</small></td>
+      <td>Devi Sri Prasad</td>
+      <td>4:21</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Love Me Again<br><small>NTR,Rakul Preet Singh</small></td>
+        <td>Sooraj Santhosh</td>
+        <td>4:06</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>My Love Is Gone<br><small>Allu Arjun,Kajal Aggarwal</small></td>
+        <td>K.G.Ranjith</td>
+        <td>4:49</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Uppenantha<br><small>Allu Arjun,Kajal Aggarwal</small></td>
+        <td>KK,Devi Sri Prasad</td>
+        <td>5:27</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Next Enti<br><small>Nani,Keerthy Suresh</small></td>
+        <td>Sagar,Ranina Reddy</td>
+        <td>3:47</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Dont Marry<br><small>Nagarjuna,Sonali Bendre</small></td>
+        <td>S.P Balasubrahmanyam</td>
+        <td>5:41</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Andamaina Bhamalu<br><small>Nagarjuna,Sonali Bendre</small></td>
+        <td>Devi Sri Prasad</td>
+        <td>4:20</td>
+      </tr>
+      
+      
+          
+  </table>
+</div>
+
+  <footer>
+    <div class="footer-section">
+        <section class="song-details">
+            <img alt="play-song" id="masterCover">
+            <div class="playing-song-info">
+              <div class="song-info">
+                <h1 id="masterSongTitle"></h1>
+                <p id="masterSongInfo"></p>
+              </div>
+              <i class="fa-regular fa-heart" id="fav-song"></i>
+            </div>
+          </section>
+
+      <section class="song-status">
+        <div class="song-control">
+          <i class="fa-solid fa-shuffle" id="shuffleMusic"></i>
+          <i class="fa-solid fa-backward-step" id="previous"></i>
+          <i class="fa-solid fa-circle-play fa-2x" id="masterPlayBtn"></i>
+          <i class="fa-sharp fa-solid fa-forward-step" id="next"></i>
+          <i class="fa-solid fa-repeat" id="repeatMode"></i>
+        </div>
+
+        <div class="progressbar-container">
+          <span id="musicStart">0:00</span>
+          <div class="custom-progress">
+            <div class="progress-bar" id="customProgressBar">
+              <div class="progress" id="customProgress"></div>
+              <div class="progress-thumb" id="customProgressThumb"></div>
+            </div>
+          </div>
+          <span id="musicEnd">3:45</span>
+        </div>
+      </section>
+
+      <section class="song-directory">
+        <i class="fa-solid fa-music"></i>
+        <p class="lyrics">Lyrics</p>
+        <i class="fa-solid fa-bars song-queue"></i>
+        <p class="queue">Queue</p>
+        <i class="fa-solid fa-computer"></i>
+        <p class="connectivity">Connect</p>
+        <i class="fa-solid fa-volume-high" id="volIcon"></i>
+        <input type="range" value="100" min="1" max="100" step="1" class="volume-seekbar">
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    const songList = [
+        {
+            title: "Neeti Mullai",
+            singer: "Ocen",
+            artist: "Devi Sri Prasad",
+            src: "Neeti Mullai.mp3",
+            cover: "Varsham.jpeg",
+            duration: "1:22"
+        },
+        {
+            title: "Nee Kannu Neeli Samudram",
+            singer: "Javed Ali",
+            artist: "Devi Sri Prasad",
+            src: "Nee Kannu Neeli Samudram.mp3",
+            cover: "Uppena.jpeg",
+            duration: "5:09"
+        },
+        {
+            title: "Naa Manasu Neelo",
+            singer: "Devi Sri Prasad",
+            artist: "Devi Sri Prasad",
+            src: "Naa Manasu Neelo.mp3",
+            cover: "Nannaku Prematho.jpeg",
+            duration: "4:21"
+        },
+        {
+          title: "Love Me Again",
+          singer: "Sooraj Santhosh",
+          artist: "Devi Sri Prasad",
+          src: "Love Me Again.mp3",
+          cover: "Nannaku Prematho.jpeg",
+          duration: "4:06"
+        },
+        {
+          title: "My Love Is Gone",
+          singer: "K.G.Ranjith",
+          artist: "Devi Sri Prasad",
+          src: "My Love Is Gone.mp3",
+          cover: "Arya2.jpeg",
+          duration: "4:49"
+        },
+        {
+            title: "Uppenantha",
+            singer: "KK,Devi Sri Prasad",
+            artist: "Devi Sri Prasad",
+            src: "Uppenantha.mp3",
+            cover: "Arya2.jpeg",
+            duration: "5:27"
+            },
+            {
+            title: "Next Enti",
+            singer: "Sagar,Ranina Reddy",
+            artist: "Devi Sri Prasad",
+            src: "Next Enti.mp3",
+            cover: "Nenu Local.jpeg",
+            duration: "3:47"
+            },
+            {
+            title: "Dont Marry",
+            singer: "S.P Balasubrahmanyam",
+            artist: "Devi Sri Prasad",
+            src: "Dont Marry.mp3",
+            cover: "Manmadhudu.jpeg",
+            duration: "5:41"
+            },
+            {
+            title: "Andamaina Bhamalu",
+            singer: "Devi Sri Prasad",
+            artist: "Devi Sri Prasad",
+            src: "Andamaina Bhamalu.mp3",
+            cover: "Manmadhudu.jpeg",
+            duration: "4:20"
+            }
+    ];
+  
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    let isRepeat = false;
+    let isShuffle = false;
+    const audio = new Audio();
+  
+    const playBtn = document.getElementById('masterPlayBtn');
+    const prevBtn = document.getElementById('previous');
+    const nextBtn = document.getElementById('next');
+    const repeatBtn = document.getElementById('repeatMode');
+    const shuffleBtn = document.getElementById('shuffleMusic');
+  
+    const masterTitle = document.getElementById('masterSongTitle');
+    const masterInfo = document.getElementById('masterSongInfo');
+    const masterCover = document.getElementById('masterCover');
+    const progress = document.getElementById('customProgress');
+    const thumb = document.getElementById('customProgressThumb');
+    const startTime = document.getElementById('musicStart');
+    const endTime = document.getElementById('musicEnd');
+  
+    function loadSong(index) {
+      const song = songList[index];
+      currentSongIndex = index;
+      audio.src = song.src;
+      masterTitle.textContent = song.title;
+      masterInfo.textContent = `${song.singer}, ${song.artist}`;
+      masterCover.src = song.cover;
+      endTime.textContent = song.duration;
+      resetProgress();
+    }
+  
+    function resetProgress() {
+      progress.style.width = '0%';
+      thumb.style.left = '0%';
+      startTime.textContent = '0:00';
+    }
+  
+    function playSong() {
+      audio.play();
+      isPlaying = true;
+      playBtn.classList.remove('fa-circle-play');
+      playBtn.classList.add('fa-circle-pause');
+    }
+  
+    function pauseSong() {
+      audio.pause();
+      isPlaying = false;
+      playBtn.classList.add('fa-circle-play');
+      playBtn.classList.remove('fa-circle-pause');
+    }
+  
+    function playNext() {
+      if (isShuffle) {
+        currentSongIndex = Math.floor(Math.random() * songList.length);
+      } else {
+        currentSongIndex = (currentSongIndex + 1) % songList.length;
+      }
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    function playPrevious() {
+      currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    playBtn.addEventListener('click', () => {
+      isPlaying ? pauseSong() : playSong();
+    });
+  
+    prevBtn.addEventListener('click', playPrevious);
+    nextBtn.addEventListener('click', playNext);
+  
+    repeatBtn.addEventListener('click', () => {
+      isRepeat = !isRepeat;
+      repeatBtn.style.color = isRepeat ? "#1db954" : "#ccc";
+    });
+  
+    shuffleBtn.addEventListener('click', () => {
+      isShuffle = !isShuffle;
+      shuffleBtn.style.color = isShuffle ? "#1db954" : "#ccc";
+    });
+  
+    audio.addEventListener('ended', () => {
+      if (isRepeat) {
+        loadSong(currentSongIndex);
+        playSong();
+      } else {
+        playNext();
+      }
+    });
+  
+    document.getElementById("fav-song").addEventListener("click", function () {
+      this.classList.toggle("fa-solid");
+      this.style.color = this.classList.contains("fa-solid") ? "#1db954" : "#aaa";
+    });
+  
+    // Click on row to play that song
+    const songTable = document.getElementById('songTable');
+    const rows = songTable.getElementsByTagName('tr');
+    for (let i = 1; i < rows.length; i++) {
+      rows[i].addEventListener('click', () => {
+        loadSong(i - 1);
+        playSong();
+      });
+    }
+  
+    audio.addEventListener('timeupdate', () => {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = `${percentage}%`;
+      thumb.style.left = `${percentage}%`;
+      let mins = Math.floor(audio.currentTime / 60);
+      let secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+      startTime.textContent = `${mins}:${secs}`;
+    });
+    const progressBarContainer = document.getElementById('customProgressBar');
+
+progressBarContainer.addEventListener('click', (e) => {
+  const rect = progressBarContainer.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+  const clickPercent = clickX / width;
+
+  if (!isNaN(audio.duration)) {
+    audio.currentTime = audio.duration * clickPercent;
+  }
+});
+function loadSong(index) {
+  const song = songList[index];
+  currentSongIndex = index;
+  audio.src = song.src;
+  masterTitle.textContent = song.title;
+  masterInfo.textContent = `${song.singer}, ${song.artist}`;
+  masterCover.src = song.cover;
+  endTime.textContent = song.duration;
+  resetProgress();
+
+  // Highlight the currently playing row
+  for (let j = 1; j < rows.length; j++) {
+    rows[j].classList.remove('active');
+  }
+  rows[index + 1].classList.add('active'); // +1 because rows[0] is the header
+}
+document.getElementById('customProgressBar').addEventListener('click', (e) => {
+      const rect = e.target.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickPercent = clickX / width;
+      if (!isNaN(audio.duration)) {
+        audio.currentTime = audio.duration * clickPercent;
+      }
+    });
+  
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        isPlaying ? pauseSong() : playSong();
+      }
+    });
+  
+    const volumeSlider = document.querySelector('.volume-seekbar');
+    const volIcon = document.getElementById('volIcon');
+  
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value / 100;
+  
+      if (audio.volume === 0) {
+        volIcon.className = 'fa-solid fa-volume-xmark';
+      } else if (audio.volume < 0.5) {
+        volIcon.className = 'fa-solid fa-volume-low';
+      } else {
+        volIcon.className = 'fa-solid fa-volume-high';
+      }
+    });
+  
+   // ❤ Heart icon logic - Save/remove liked song WITHOUT redirect
+document.getElementById("fav-song").addEventListener("click", function () {
+  const heartIcon = this;
+  heartIcon.classList.toggle("fa-solid");
+  const isLiked = heartIcon.classList.contains("fa-solid");
+  heartIcon.style.color = isLiked ? "#1db954" : "#aaa";
+
+  const currentSong = songList[currentSongIndex];
+  let liked = JSON.parse(localStorage.getItem('likedSongs')) || [];
+
+  if (isLiked) {
+    // Add song if not already in liked list
+    if (!liked.find(song => song.title === currentSong.title)) {
+      liked.push(currentSong);
+    }
+  } else {
+    // Remove song from liked list
+    liked = liked.filter(song => song.title !== currentSong.title);
+  }
+
+  localStorage.setItem('likedSongs', JSON.stringify(liked));
+});
+
+  
+    // Load initial song
+    loadSong(currentSongIndex);
+
+  </script>
+  
+  
+</body>
+</html>

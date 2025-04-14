@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liked Songs</title>
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      color: #1db954;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      color: #ccc;
+      font-weight: 500;
+    }
+    td small {
+      color: #888;
+    }
+    tr:hover {
+      background: #1db95420;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <ul id="likedSongsList"></ul>
+  <audio id="audioPlayer" controls style="display: none;"></audio>
+  <h1>❤️ Your Liked Songs</h1>
+  <table id="likedTable">
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Singer</th>
+      <th>⏱</th>
+    </tr>
+  </table>
+
+  <script>
+   const liked = JSON.parse(localStorage.getItem('likedSongs')) || [];
+    const table = document.getElementById('likedTable');
+
+    liked.forEach((song, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${song.title}<br><small>${song.singer}</small></td>
+        <td>${song.artist}</td>
+        <td>${song.duration}</td>
+      `;
+      row.addEventListener('click', () => {
+        // Optional: Navigate to main player with song
+        localStorage.setItem("playSongOnLoad", JSON.stringify(song));
+           window.location.href = index.html;
+
+      });
+      table.appendChild(row);
+    });
+
+  </script>
+  
+</body>
+</html>

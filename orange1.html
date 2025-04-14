@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orange - Playlist</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .content-scrollable {
+      overflow-y: auto;
+      height: calc(100vh - 260px);
+      padding: 0 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(to bottom, #ffa500, #121212);
+    }
+
+    .song-cover img {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .playlist-info h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .playlist-details {
+      font-size: 18px;
+      color: #ccc;
+      margin: 0;
+    }
+
+    .song-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .song-table th,
+    .song-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    .song-table th {
+      color: #b3b3b3;
+      font-weight: 500;
+    }
+
+    .song-table small {
+      color: #888;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 98%;
+      background-color: #181818;
+      padding: 10px 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .song-details {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .song-details img {
+      height: 50px;
+      width: 50px;
+      border-radius: 4px;
+    }
+
+    .playing-song-info h1 {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .playing-song-info p {
+      font-size: 12px;
+      color: #aaa;
+      margin: 0;
+    }
+
+    .fa-heart {
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .song-status {
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .song-control i {
+      margin: 0 10px;
+      cursor: pointer;
+      color: #ccc;
+    }
+
+    .fa-circle-play {
+      color: white;
+    }
+
+    .progressbar-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .custom-progress {
+      flex-grow: 1;
+      height: 5px;
+      background-color: #333;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #333;
+    }
+
+    .progress {
+      height: 100%;
+      background: #1db954;
+      width: 0%;
+    }
+
+    .progress-thumb {
+      width: 12px;
+      height: 12px;
+      background: #1db954;
+      border-radius: 50%;
+      position: absolute;
+      top: -4px;
+      left: 0%;
+      transform: translateX(-50%);
+    }
+
+    .song-directory {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .song-directory i,
+    .song-directory p {
+      font-size: 12px;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .volume-seekbar {
+      width: 100px;
+    }
+
+    .song-table tr.active {
+      background-color: #333333;
+      color: #1db954;
+    }
+
+    #lyricsPanel {
+      display: none;
+      position: fixed;
+      bottom: 60px;
+      left: 20px;
+      right: 20px;
+      background: #181818;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+      z-index: 1000;
+    }
+
+    #lyricsPanel h3 {
+      margin-top: 0;
+      color: #1db954;
+    }
+
+    #lyricsPanel p {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="song-cover">
+      <img src="Orange.avif" alt="Orange" id="playlistCover">
+    </div>
+    <div class="playlist-info">
+      <p class="playlist-details">Ramcharan's</p>
+      <h1>Orange</h1>
+    </div>
+  </div>
+
+  <div class="content-scrollable">
+    <table class="song-table" id="songTable">
+      <tr>
+        <th>#</th>
+        <th>TITLE</th>
+        <th>SINGER</th>
+        <th>⏱</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Ola olaala Ala<br><small>Ramcharan,Genelia</small></td>
+        <td>ranina reddy,N.C.karunya</td>
+        <td>5:36</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Nenu Nuvvantu<br><small>Ramcharan,Genelia</small></td>
+        <td>Nadeesh,Naresh iyer,jackey</td>
+        <td>4:49</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Hello Rammante<br><small>Ramcharan,Genelia</small></td>
+        <td>vijay prakesh,devan ekambaram,burns</td>
+        <td>4:44</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Rooba rooba<br><small>Ramcharan,Genelia</small></td>
+        <td>chinmayi Sripada,Shahil hada</td>
+        <td>5:14</td>
+      </tr>
+
+  
+    </table>
+  </div>
+
+  <div id="lyricsPanel">
+    <h3>Lyrics</h3>
+    <p id="lyricsText"></p>
+  </div>
+
+  <footer>
+    <div class="footer-section">
+      <section class="song-details">
+        <img src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700793770/play-song_qvjwqd.jpg" alt="play-song" id="masterCover">
+        <div class="playing-song-info">
+          <div class="song-info">
+            <h1 id="masterSongTitle">Raataan Lambiyan</h1>
+            <p id="masterSongInfo">Tanishk Bagchi, Jubin Nautiyal, Asees Kaur</p>
+          </div>
+          <i class="fa-regular fa-heart" id="fav-song"></i>
+        </div>
+      </section>
+
+      <section class="song-status">
+        <div class="song-control">
+          <i class="fa-solid fa-shuffle" id="shuffleMusic"></i>
+          <i class="fa-solid fa-backward-step" id="previous"></i>
+          <i class="fa-solid fa-circle-play fa-2x" id="masterPlayBtn"></i>
+          <i class="fa-sharp fa-solid fa-forward-step" id="next"></i>
+          <i class="fa-solid fa-repeat" id="repeatMode"></i>
+        </div>
+
+        <div class="progressbar-container">
+          <span id="musicStart">0:00</span>
+          <div class="custom-progress" id="customProgressBar">
+            <div class="progress-bar">
+              <div class="progress" id="customProgress"></div>
+              <div class="progress-thumb" id="customProgressThumb"></div>
+            </div>
+          </div>
+          <span id="musicEnd">3:45</span>
+        </div>
+      </section>
+
+      <section class="song-directory">
+        <i class="fa-solid fa-music"></i>
+        <p class="lyrics">Lyrics</p>
+        <i class="fa-solid fa-bars song-queue"></i>
+        <p class="queue">Queue</p>
+        <i class="fa-solid fa-computer"></i>
+        <p class="connectivity">Connect</p>
+        <i class="fa-solid fa-volume-high" id="volIcon"></i>
+        <input type="range" value="100" min="1" max="100" step="1" class="volume-seekbar">
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    const songList = [
+      {
+        title: "ola Olaala Ala",
+        artist: "Haris Jayaraj",
+        singer: "Ranina reddy,karunya",
+        cover: "Orange.avif",
+        src: "[iSongs.info] 01 - Ola Olaala Ala.mp3",
+        duration: "5:36",
+        lyrics: ""
+        
+      },
+      {
+        title: "Nenu nuvvantu",
+        artist: "Haris jayaraj",
+        singer: "nadeesh,naresh iyer,jackey",
+        cover: "Orange.avif",
+        src: "[iSongs.info] 03 - Nenu Nuvvantu.mp3",
+        duration: "4:49"
+      },
+      {
+        title: "Hello Rammante",
+        artist: "Haris jayaraj",
+        singer: "vijayprakash,burns",
+        cover: "Orange.avif",
+        src: "[iSongs.info] 04 - Hello Rammante.mp3",
+        duration: "4:44"
+      },
+      {
+        title: "Rooba rooba",
+        artist: "haris jayaraj",
+        singer: "chinmayi sripada,shahil hada",
+        cover: "Orange.avif",
+        src: "[iSongs.info] 06 - Rooba Rooba (1).mp3",
+        duration: "5:14"
+      }
+      
+    ];
+    
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    let isRepeat = false;
+    let isShuffle = false;
+    const audio = new Audio();
+  
+    const playBtn = document.getElementById('masterPlayBtn');
+    const prevBtn = document.getElementById('previous');
+    const nextBtn = document.getElementById('next');
+    const repeatBtn = document.getElementById('repeatMode');
+    const shuffleBtn = document.getElementById('shuffleMusic');
+    const lyricsBtn = document.querySelector('.lyrics');
+    const lyricsPanel = document.getElementById('lyricsPanel');
+    const lyricsText = document.getElementById('lyricsText');
+  
+    const masterTitle = document.getElementById('masterSongTitle');
+    const masterInfo = document.getElementById('masterSongInfo');
+    const masterCover = document.getElementById('masterCover');
+    const progress = document.getElementById('customProgress');
+    const thumb = document.getElementById('customProgressThumb');
+    const startTime = document.getElementById('musicStart');
+    const endTime = document.getElementById('musicEnd');
+  
+    const songTable = document.getElementById('songTable');
+    const rows = songTable.getElementsByTagName('tr');
+
+    lyricsText.textContent = songList.lyrics || "No lyrics available.";
+
+  
+    function resetProgress() {
+      progress.style.width = '0%';
+      thumb.style.left = '0%';
+      startTime.textContent = '0:00';
+    }
+  
+    function loadSong(index) {
+      const song = songList[index];
+      currentSongIndex = index;
+      audio.src = song.src;
+      audio.load();
+      masterTitle.textContent = song.title;
+      masterInfo.textContent = `${song.singer}, ${song.artist}`;
+      masterCover.src = song.cover;
+      endTime.textContent = song.duration;
+      lyricsText.textContent = song.lyrics || "No lyrics available.";
+      resetProgress();
+  
+      for (let j = 1; j < rows.length; j++) {
+        rows[j].classList.remove('active');
+      }
+      rows[index + 1].classList.add('active');
+    }
+  
+    function playSong() {
+      audio.play();
+      isPlaying = true;
+      playBtn.classList.remove('fa-circle-play');
+      playBtn.classList.add('fa-circle-pause');
+    }
+  
+    function pauseSong() {
+      audio.pause();
+      isPlaying = false;
+      playBtn.classList.add('fa-circle-play');
+      playBtn.classList.remove('fa-circle-pause');
+    }
+  
+    function playNext() {
+      currentSongIndex = isShuffle ? Math.floor(Math.random() * songList.length) : (currentSongIndex + 1) % songList.length;
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    function playPrevious() {
+      currentSongIndex = (currentSongIndex - 1 + songList.length) % songList.length;
+      loadSong(currentSongIndex);
+      playSong();
+    }
+  
+    playBtn.addEventListener('click', () => isPlaying ? pauseSong() : playSong());
+    prevBtn.addEventListener('click', playPrevious);
+    nextBtn.addEventListener('click', playNext);
+  
+    repeatBtn.addEventListener('click', () => {
+      isRepeat = !isRepeat;
+      repeatBtn.style.color = isRepeat ? "#1db954" : "#ccc";
+    });
+  
+    shuffleBtn.addEventListener('click', () => {
+      isShuffle = !isShuffle;
+      shuffleBtn.style.color = isShuffle ? "#1db954" : "#ccc";
+    });
+  
+    audio.addEventListener('ended', () => isRepeat ? (loadSong(currentSongIndex), playSong()) : playNext());
+  
+    document.querySelector('.lyrics').addEventListener('click', () => {
+      lyricsPanel.style.display = lyricsPanel.style.display === 'none' ? 'block' : 'none';
+    });
+  
+    for (let i = 1; i < rows.length; i++) {
+      rows[i].addEventListener('click', () => {
+        loadSong(i - 1);
+        playSong();
+      });
+    }
+  
+    audio.addEventListener('timeupdate', () => {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = `${percentage}%`;
+      thumb.style.left = `${percentage}%`;
+      let mins = Math.floor(audio.currentTime / 60);
+      let secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+      startTime.textContent = `${mins}:${secs}`;
+    });
+  
+    document.getElementById('customProgressBar').addEventListener('click', (e) => {
+      const rect = e.target.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const clickPercent = clickX / width;
+      if (!isNaN(audio.duration)) {
+        audio.currentTime = audio.duration * clickPercent;
+      }
+    });
+  
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        isPlaying ? pauseSong() : playSong();
+      }
+    });
+  
+    const volumeSlider = document.querySelector('.volume-seekbar');
+    const volIcon = document.getElementById('volIcon');
+  
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value / 100;
+  
+      if (audio.volume === 0) {
+        volIcon.className = 'fa-solid fa-volume-xmark';
+      } else if (audio.volume < 0.5) {
+        volIcon.className = 'fa-solid fa-volume-low';
+      } else {
+        volIcon.className = 'fa-solid fa-volume-high';
+      }
+    });
+  
+   // ❤️ Heart icon logic - Save/remove liked song WITHOUT redirect
+document.getElementById("fav-song").addEventListener("click", function () {
+  const heartIcon = this;
+  heartIcon.classList.toggle("fa-solid");
+  const isLiked = heartIcon.classList.contains("fa-solid");
+  heartIcon.style.color = isLiked ? "#1db954" : "#aaa";
+
+  const currentSong = songList[currentSongIndex];
+  let liked = JSON.parse(localStorage.getItem('likedSongs')) || [];
+
+  if (isLiked) {
+    // Add song if not already in liked list
+    if (!liked.find(song => song.title === currentSong.title)) {
+      liked.push(currentSong);
+    }
+  } else {
+    // Remove song from liked list
+    liked = liked.filter(song => song.title !== currentSong.title);
+  }
+
+  localStorage.setItem('likedSongs', JSON.stringify(liked));
+});
+
+  
+    loadSong(currentSongIndex);
+  </script>
+  
+
+</body>
+</html>

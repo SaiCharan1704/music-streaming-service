@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="Rhythm logo.png" type="image/x-icon">
+
+  <!-- Linking external css file -->
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Rhythm - Home</title>
+</head>
+
+<body>
+  canvas id="myChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Hesader Section Start-->
+  <header>
+    <section class="left-section">
+      <div class="hamberger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <div class="back-forward-btn-container">
+        <i class="fa-solid fa-circle-chevron-left back-btn"></i>
+        <i class="fa-solid fa-circle-chevron-right forward-btn"></i>
+      </div>
+    </section>
+
+    <section class="mid-section">
+      <div class="header-search-div">
+        <i class="fa-solid fa-magnifying-glass header-search-icon" onclick="searchSong()"></i>
+        <input type="text" placeholder="what do you want to listen to?" id="searchBar">
+      </div>
+    </section>
+
+    <section class="right-section">
+      <div class="upgrade-dropdown-container">
+        <button class="upgrade-btn">Explore Premium</button>
+        <div class="dropdown">
+          <div class="avatar-container">
+            <img
+              src="https://res.cloudinary.com/dlt4ash36/image/upload/v1700893730/User-Avatar-Profile-Download-PNG-Isolated-Image_mrgemq.png"
+              alt="dp" class="profile-image">
+          </div>
+          <p class="profile-name">username</p>
+          <i class="fa-solid fa-caret-down"></i>
+          <ul class="dropdown-inner">
+            <li>Account</li>
+            <li>Profile</li>
+            <li>Private Session</li>
+            <li>Settings</li>
+            <div class="logout-line"></div>
+            <li id="log-out">Log Out</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </header>
+  <!-- Header Section End-->
+
+  <!-- Start aside -->
+  <div class="aside-container-seperator">
+    <aside class="sidebar">
+      <div class="hide-sidebar">
+        <i class="fa-solid fa-close icons"></i>
+      </div>
+      <div class="sidebar-close-indicator">Close</div>
+      <nav>
+        <a href="#" class="sidebar-ellipsis">
+          <i class="fa-solid fa-ellipsis fa-xl icons"></i>
+        </a>
+
+        <a href="#" class="sidebar-home">
+          <i class="fa-solid fa-house-chimney fa-xl icons"></i>
+          <span class="txt">Home</span>
+        </a>
+
+        <a href="#" id="sidebar-search">
+          <i class="fa-solid fa-magnifying-glass icons"></i>
+          <span class="txt">Search</span>
+        </a>
+
+        <a href="#" id="sidebar-library">
+          <i class="fa-solid fa-book-open-reader icons"></i>
+          <span class="txt">Library</span>
+        </a>
+      </nav>
+
+      <nav>
+        <a href="#">
+          <i class="fa-solid fa-square-plus  icons"></i>
+          <span class="txt">Create Playlist</span>
+        </a>
+
+        <a href="#">
+          <a href="likedsongs.html">
+          <img src="Liked Songs.jpeg" alt="liked-songs-icon" class="nav-icons icons">
+          <span class="txt">Liked Songs</span>
+        </a>
+        </a>
+      </nav>
+      <hr>
+
+      <nav>
+        <h3>Singer</h3>
+        <div class="singer">
+          <div>
+            
+            <span>Arijit Singh</span>
+          </div>
+          <div>
+            
+            <span>Jubin Nautial</span>
+          </div>
+          <div>
+            
+            <span>Sonu Nigam</span>
+          </div>
+        </div>
+      </nav>
+
+    </aside>
+    <!-- End aside -->
+
+    <!-- Main Section -->
+    <main>
+      <div class="main-section">
+
+        <section class="home-page">
+          <div class="playlist-sponsored">
+            <p>PLAYLIST</p>
+            <span>SPONSERED</span>
+          </div>
+          <div class="trending-home-container">
+            <a href="#"><img src="Mawaa Enthaina pic.jpeg"
+                alt="cover" class="home-playlist-cover"></a>
+            <div class="trending-song-container">
+              <h1>Most frequently Played Song On Youtube</h1>
+              <p>Listen to the biggest trending song on Youtube... Only on the Trending Youtube
+                Playlist! Follow Now! </p>
+              <div class="home-buttons">
+                <button id="play-btn-home">Play</button>
+                <button id="follow-btn">Video</button>
+                <i class="fa-solid fa-ellipsis fa-xl home-more-btn"></i>
+                <div class="more-playlist">More</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--Home Page Song Collection-->
+        <section class="user-likes">
+          <div class="user-likes-title">
+            <h1>Popular song</h1>
+            <p>SHOW ALL</p>
+          </div>
+
+          <div class="cards">
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Guntur Kaaram.html">
+                <img src="Guntur Kaaram.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Guntur Kaaram</h4>
+                <p class="song-artist">Mahesh Babu,Sreeleela</p>
+                <i id="0" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Guntur Kaaram.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="devara1.html">
+                <img src="Devara.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Devara: Part 1</h4>
+                <p class="song-artist">Jr.NTR,Janhvi Kapoor,Saif Ali Khan</p>
+                <i id="1" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="devara1.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="orange1.html">
+                <img src="Orange.avif" alt="song-thumbnail">
+                <h4 class="song-title">Orange</h4>
+                <p class="song-artist">Ram charan,Illiana</p>
+                <i id="2" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="orange1.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="pushpa1.html">
+                <img src="Pushpa.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Pushpa: The Rise</h4>
+                <p class="song-artist">Allu Arjun,Rashmika,Fahadh Faasil</p>
+                <i id="3" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="pushpa1.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="RadheShyam Album.html">
+                <img src="RadheShyam.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">RadheShyam</h4>
+                <p class="song-artist">Prabhas,Pooja Hegde</p>
+                <i id="4" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="RadheShyam Album.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="hinanna.html">
+                <img src="Hi Nanna.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Hi Nanna</h4>
+                <p class="song-artist">Nani,Mrunal Thakur</p>
+                <i id="5" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="hinanna.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="kushi1.html">
+                <img src="Kushi.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Kushi</h4>
+                <p class="song-artist">Pawan Kalyan,Bhumika</p>
+                <i id="5" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="kushi1.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="dearcomrade1.html">
+                <img src="dearcomrade.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Dear Comrade</h4>
+                <p class="song-artist">Vijay,Rashmika</p>
+                <i id="5" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="dearcomrade1.html"></i>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Best of artist -->
+        <section class="user-likes">
+          <div class="user-likes-title">
+            <h1>Best of artist</h1>
+            <p>SHOW ALL</p>
+          </div>
+
+          <div class="cards">
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Master.html">
+                <img src="Master.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Master</h4>
+                <p class="song-artist">Thalapathy Vijay,Vijay Sethupathi</p>
+                <i id="5" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Master.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Vikram.html">
+                <img src="Vikram.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Vikram</h4>
+                <p class="song-artist">Kamal Haasan,Fahadh Faasil,Vijay Sethupathi</p>
+                <i id="6" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Vikram.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Jailer.html">
+                <img src="Jailer.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Jailer</h4>
+                <p class="song-artist">Rajinikanth,Shiva Rajkumar,Mohanlal</p>
+                <i id="7" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Jailer.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Vidaamuryachi.html">
+                <img src="Vidaamuyarchi.jpg" alt="song-thumbnail">
+                <h4 class="song-title">Vidaamuyarchi</h4>
+                <p class="song-artist">Ajith,Trisha</p>
+                <i id="8" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Vidaamuryachi.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Amaran.html">
+                <img src="Amaran.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Amaran</h4>
+                <p class="song-artist">SivaKarthikeyan,Sai Pallavi</p>
+                <i id="9" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Amaran.html"></i>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Recently Played -->
+        <section class="user-likes">
+          <div class="user-likes-title">
+            <h1>More of what you like</h1>
+            <p>SHOW ALL</p>
+          </div>
+
+          <div class="cards">
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Animal.html">
+                <img src="Animal.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Animal</h4>
+                <p class="song-artist">Ranbir Kapoor, Rashmika Mandanna</p>
+                <i id="10" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Animal.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Kabir Singh.html">
+                <img src="Kabir Singh.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Kabir Singh</h4>
+                <p class="song-artist">Shahid Kapoor,Kiara Advani</p>
+                <i id="11" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Kabir Singh.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Brahmastra.html">
+                <img src="Brahmastra.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Brahmastra: Part One - Shiva</h4>
+                <p class="song-artist">Ranbir Kapoor,Alia Bhatt</p>
+                <i id="12" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Brahmastra.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Shershaah.html">
+                <img src="Shershaah.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Shershaah</h4>
+                <p class="song-artist">Sidharth Malhotra,Kiara Advani</p>
+                <i id="13" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Shershaah.html"></i>
+              </div>
+            </div>
+            <div class="song-cards">
+              <div class="song-cover" data-file="M.S.Dhoni.html">
+                <img src="M.S.Dhoni.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">M.S.Dhoni</h4>
+                <p class="song-artist">Sushant Singh Rajput,Disha Patani,Kiara Advani</p>
+                <i id="13" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="M.S.Dhoni.html"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top Hindi Tracks -->
+        <section class="user-likes">
+          <div class="user-likes-title">
+            <h1>Top Music Directors</h1>
+            <p>SHOW ALL</p>
+          </div>
+
+          <div class="cards">
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="DSP.html">
+                <img src="DSP.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">DSP Music Magic</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="15" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="DSP.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Thaman.html">
+                <img src="Thaman.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Thaman's Music Blast</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="16" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Thaman.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="G.V.Prakash.html">
+                <img src="G.V.Prakash.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">G.V.Prakash Music Melody</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="17" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="G.V.Prakash.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Anirudh.html">
+                <img src="Anirudh Ravichander.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Top Tracks of Anirudh all time</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="18" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Anirudh.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Amaran.html">
+                <img src="mmkeeravani.jpg" alt="song-thumbnail">
+                <h4 class="song-title">M.M keravani</h4>
+                <p class="song-artist">The essential Melodies, all in one playlist.</p>
+                <i id="19" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Amaran.html"></i>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Favourite Song -->
+        <section class="user-likes">
+          <div class="user-likes-title">
+            <h1>Favourite song</h1>
+            <p>SHOW ALL</p>
+          </div>
+          <div class="cards">
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="itemsongs.html">
+                <img src="Item Songs.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Top Item Songs</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="20" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="itemsongs.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Breakup Songs.html">
+                <img src="Breakup Songs.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Breakup Mood</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="21" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Breakup Songs.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Telugu Hits.html">
+                <img src="Telugu Hits.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Telugu Vibes</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="22" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Telugu Hits.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Tamil Hits.html">
+                <img src="Tamil Hits.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Tamil Melodies</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="23" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Tamil Hits.html"></i>
+              </div>
+            </div>
+
+            <div class="song-cards">
+              <div class="song-cover" data-file="Hindi Hits.html">
+                <img src="Hindi Hits.jpeg" alt="song-thumbnail">
+                <h4 class="song-title">Hot Hindi</h4>
+                <p class="song-artist">The essential tracks, all in one playlist.</p>
+                <i id="24" class=" fa-solid fa-circle-play fa-3x cover-play-btn" data-file="Hindi Hits.html"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer Section Start-->
+  <footer>
+    <div class="footer-section">
+      <section class="song-details">
+        <img src="Mawaa Enthaina pic.jpeg" alt="play-song"
+          id="masterCover">
+        <div class="playing-song-info">
+          <div class="song-info">
+            <h1 id="masterSongTitle">Mawaa Enthaina</h1>
+            <p id="masterSongInfo">Ramachari,Sri Krishna</p>
+          </div>
+          <i class="fa-regular fa-heart" id="fav-song"></i>
+        </div>
+      </section>
+
+      <section class="song-status">
+        <div class="song-control">
+          <i class="fa-solid fa-shuffle" id="shuffleMusic"></i>
+          <p class="shuffle">Enable shuffle</p>
+          <div id="shuffle-enable-indicator"></div>
+          <i class="fa-solid fa-backward-step" id="previous"></i>
+          <p class="previous">Previous</p>
+          <i class="fa-solid fa-circle-play fa-2x" id="masterPlayBtn"></i>
+          <p class="play">Play</p>
+          <i class="fa-sharp fa-solid fa-forward-step" id="next"></i>
+          <p class="next">Next</p>
+          <i class="fa-solid fa-repeat" id="repeatMode"></i>
+          <p class="enable-disable-repeat">Enable repeat</p>
+          <div id="repeat-enable-indicator">1</div>
+        </div>
+
+        <div class="progressbar-container">
+          <span id="musicStart">0:00</span>
+          <div class="custom-progress">
+            <div class="progress-bar" id="customProgressBar">
+              <div class="progress" id="customProgress"></div>
+              <div class="progress-thumb" id="customProgressThumb"></div>
+            </div>
+          </div>
+          <span id="musicEnd">0:00</span>
+        </div>
+      </section>
+
+      <section class="song-directory">
+        <i class="fa-solid fa-music"></i>
+        <p class="lyrics">Lyric</p>
+        <i class="fa-solid fa-bars song-queue"></i>
+        <p class="queue">Queue</p>
+        <i class="fa-solid fa-computer"></i>
+        <p class="connectivity">Connect to a device</p>
+        <i class="fa-solid fa-duotone fa-volume-high" id="volIcon"></i>
+        <p class="mute">Mute</p>
+        <input type="range" value="100" min="1" max="100" step="1" class="volume-seekbar">
+      </section>
+    </div>
+  </footer>
+
+  <!-- Footer Section End-->
+
+  <!-- External javascript -->
+  <script src="index.js"></script>
+
+  <!-- Fonth Awesome Link -->
+  <script src="https://kit.fontawesome.com/5ad84bde35.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
